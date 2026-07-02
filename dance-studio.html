@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ВиДэнс — Танцевальная студия в Севастополе</title>
+  <meta name="description" content="Обучаем с нуля. Strip, high heels, twerk, боди пластика и микс стилей — индивидуально и в группах в Севастополе.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @font-face { font-family: 'Bounded'; src: url('ofont.ru_Bounded_1.woff') format('woff'); font-weight: 400 800; font-display: swap; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #08080e; --bg-deep: #050509; --bg-surface: #0c0c14;
+      --surface: rgba(255,255,255,0.04); --surface-hover: rgba(255,255,255,0.07);
+      --accent: #a855f7; --accent-bright: #c084fc; --accent-deep: #7c3aed;
+      --accent-glow: rgba(168,85,247,0.35); --accent-glow-strong: rgba(168,85,247,0.55);
+      --pink: #e879a8; --pink-glow: rgba(232,121,168,0.3);
+      --text: #f0eef5; --text-muted: #9894a8; --text-dim: #5a5668;
+      --border: rgba(255,255,255,0.07); --border-glow: rgba(168,85,247,0.25);
+      --gradient-main: linear-gradient(135deg, #a855f7, #7c3aed);
+      --gradient-pink: linear-gradient(135deg, #e879a8, #a855f7);
+      --gradient-btn: linear-gradient(135deg, #a855f7, #7c3aed);
+      --radius: 16px; --radius-sm: 12px; --radius-xs: 8px; --radius-pill: 100px;
+      --font-display: 'Bounded', sans-serif; --font-body: 'Inter', sans-serif;
+      --max-w: 1280px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    .ambient-glow { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(100px); }
+    .ambient-glow--1 { width: 900px; height: 900px; top: -80px; left: -120px; background: radial-gradient(circle, rgba(168,85,247,0.3) 0%, transparent 55%); }
+    .ambient-glow--2 { width: 800px; height: 800px; top: 32%; right: -180px; background: radial-gradient(circle, rgba(124,58,237,0.22) 0%, transparent 55%); }
+    .ambient-glow--3 { width: 1000px; height: 800px; bottom: 3%; left: 10%; background: radial-gradient(circle, rgba(232,121,168,0.18) 0%, transparent 50%); }
+    .ambient-glow--4 { width: 700px; height: 700px; top: 58%; left: -80px; background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 55%); }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; height: 72px; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); background: rgba(8,8,14,0.78); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -0.01em; display: flex; align-items: center; gap: 2px; }
+    .nav-logo span { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-center { display: flex; align-items: center; gap: 32px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color 0.2s; white-space: nowrap; }
+    .nav-links a:hover { color: var(--accent-bright); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-phone { display: flex; align-items: center; gap: 6px; color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color 0.2s; white-space: nowrap; }
+    .nav-phone:hover { color: var(--text); }
+    .nav-socials { display: flex; gap: 8px; }
+    .nav-social { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+    .nav-social:hover { border-color: var(--border-glow); color: var(--accent-bright); background: rgba(168,85,247,0.08); }
+    .nav-social svg { width: 15px; height: 15px; }
+    .nav-cta { padding: 10px 22px; background: var(--gradient-btn); color: #fff; border: none; border-radius: var(--radius-pill); font-family: var(--font-body); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 0 16px var(--accent-glow); text-decoration: none; white-space: nowrap; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 28px var(--accent-glow-strong); }
+    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-burger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+    .hero { position: relative; min-height: 130vh; display: flex; align-items: flex-end; overflow: hidden; padding: 100px 40px 80px; }
+    .hero-logo { position: absolute; top: 80px; left: 0; right: 0; width: 100%; padding: 0 40px; opacity: 0.1; pointer-events: none; z-index: 3; filter: drop-shadow(0 0 40px rgba(168,85,247,0.35)); }
+    .hero-logo svg { width: 100%; height: auto; }
+    .hero-logo-sub { position: absolute; top: calc(80px + 100px); left: 0; right: 0; text-align: center; font-family: var(--font-body); font-size: clamp(0.85rem, 1.8vw, 1.1rem); font-weight: 500; color: rgba(255,255,255,0.25); letter-spacing: 0.25em; text-transform: uppercase; z-index: 3; pointer-events: none; }
+    .hero-darken { position: absolute; top: 0; left: 0; right: 0; height: 55%; background: linear-gradient(180deg, rgba(8,8,14,0.85) 0%, rgba(8,8,14,0.5) 50%, transparent 100%); z-index: 1; pointer-events: none; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg video, .hero-bg img, .hero-bg iframe { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg) 0%, transparent 20%), linear-gradient(0deg, var(--bg) 6%, transparent 45%), linear-gradient(90deg, var(--bg) 0%, transparent 50%), radial-gradient(ellipse at 30% 50%, rgba(168,85,247,0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 40%, rgba(232,121,168,0.1) 0%, transparent 40%); }
+    .hero-glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(168,85,247,0.18) 0%, transparent 65%); top: 30%; left: 25%; transform: translate(-50%,-50%); pointer-events: none; filter: blur(80px); z-index: 0; }
+    .hero-glow-2 { position: absolute; width: 450px; height: 450px; border-radius: 50%; background: radial-gradient(circle, rgba(232,121,168,0.12) 0%, transparent 65%); bottom: 15%; right: 15%; pointer-events: none; filter: blur(70px); z-index: 0; }
+    .hero-content { position: relative; z-index: 1; max-width: var(--max-w); margin: 0 auto; width: 100%; display: flex; justify-content: center; align-items: flex-end; }
+    .hero-text { max-width: 680px; text-align: center; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .hero h1 .accent { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1rem; color: var(--text-muted); max-width: 520px; margin: 0 auto 32px; line-height: 1.7; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; align-items: center; }
+    .hero-actions-group { display: flex; align-items: center; gap: 0; }
+    .hero-actions-group .btn-secondary { border-radius: var(--radius-pill) 0 0 var(--radius-pill); padding-right: 18px; }
+    .hero-actions-group .btn-secondary--sm { border-radius: 0 var(--radius-pill) var(--radius-pill) 0; padding-left: 18px; border-left: none; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 14px 30px; background: var(--gradient-btn); color: #fff; border: none; border-radius: var(--radius-pill); font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; box-shadow: 0 0 20px var(--accent-glow); white-space: nowrap; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 36px var(--accent-glow-strong); }
+    .btn-primary:active { transform: translateY(0) scale(0.98); }
+    .btn-secondary { display: inline-flex; align-items: center; justify-content: center; padding: 14px 30px; background: transparent; color: var(--text); border: 1px solid var(--border-glow); border-radius: var(--radius-pill); font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: border-color 0.2s, background 0.2s, box-shadow 0.2s; text-decoration: none; white-space: nowrap; }
+    .btn-secondary:hover { border-color: var(--accent-bright); background: rgba(168,85,247,0.06); box-shadow: 0 0 18px rgba(168,85,247,0.12); }
+    .btn-secondary:active { transform: scale(0.98); }
+
+    .section { padding: 100px 40px; max-width: var(--max-w); margin: 0 auto; }
+    .section-header { margin-bottom: 48px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 10px; }
+    .section-title .accent { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-desc { color: var(--text-muted); font-size: 1rem; max-width: 500px; line-height: 1.7; }
+
+    .advantages-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .advantage-card { padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
+    .advantage-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gradient-main); opacity: 0; transition: opacity 0.3s; }
+    .advantage-card:hover { border-color: var(--border-glow); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(168,85,247,0.08); }
+    .advantage-card:hover::before { opacity: 1; }
+    .advantage-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.15); border-radius: var(--radius-sm); margin-bottom: 20px; color: var(--accent-bright); }
+    .advantage-icon svg { width: 22px; height: 22px; }
+    .advantage-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 6px; line-height: 1.3; }
+    .advantage-card p { color: var(--text-muted); font-size: 0.82rem; line-height: 1.6; }
+
+    .directions-carousel { position: relative; height: 600px; perspective: 1200px; transform-style: preserve-3d; display: flex; align-items: center; justify-content: center; margin: 20px 0; user-select: none; }
+    .directions-carousel .direction-card { position: absolute; width: 320px; aspect-ratio: 3/4; border-radius: var(--radius); overflow: hidden; cursor: pointer; border: 1px solid var(--border); transition: transform 0.8s cubic-bezier(0.16,1,0.3,1), filter 0.8s cubic-bezier(0.16,1,0.3,1), opacity 0.8s cubic-bezier(0.16,1,0.3,1), box-shadow 0.8s cubic-bezier(0.16,1,0.3,1), border-color 0.4s; will-change: transform; }
+    .directions-carousel .direction-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+    .directions-carousel .direction-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,8,14,0.92) 0%, rgba(8,8,14,0.2) 55%, transparent 100%); pointer-events: none; }
+    .directions-carousel .direction-card .direction-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 20px; z-index: 1; transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .directions-carousel .direction-card .direction-info h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 4px; }
+    .directions-carousel .direction-card .direction-info p { color: var(--text-muted); font-size: 0.78rem; line-height: 1.5; margin-bottom: 12px; }
+    .directions-carousel .direction-card.pos-center { transform: translateX(0) rotateY(0deg) scale(1); z-index: 5; filter: blur(0); border-color: var(--border-glow); box-shadow: 0 0 50px rgba(168,85,247,0.18); }
+    .directions-carousel .direction-card.pos-center .direction-info { opacity: 1; transform: translateY(0); }
+    .directions-carousel .direction-card.pos-center img { transform: scale(1.04); }
+    .directions-carousel .direction-card.pos-left-1 { transform: translateX(-270px) rotateY(15deg) scale(0.82); z-index: 3; filter: blur(1.5px); opacity: 0.9; }
+    .directions-carousel .direction-card.pos-left-1 .direction-info { opacity: 0.5; transform: translateY(8px); }
+    .directions-carousel .direction-card.pos-left-1:hover { border-color: var(--border-glow); filter: blur(0.5px); }
+    .directions-carousel .direction-card.pos-left-2 { transform: translateX(-470px) rotateY(30deg) scale(0.62); z-index: 1; filter: blur(3px); opacity: 0.5; }
+    .directions-carousel .direction-card.pos-left-2 .direction-info { opacity: 0; transform: translateY(14px); }
+    .directions-carousel .direction-card.pos-left-2:hover { border-color: var(--border-glow); filter: blur(1.5px); }
+    .directions-carousel .direction-card.pos-right-1 { transform: translateX(270px) rotateY(-15deg) scale(0.82); z-index: 3; filter: blur(1.5px); opacity: 0.9; }
+    .directions-carousel .direction-card.pos-right-1 .direction-info { opacity: 0.5; transform: translateY(8px); }
+    .directions-carousel .direction-card.pos-right-1:hover { border-color: var(--border-glow); filter: blur(0.5px); }
+    .directions-carousel .direction-card.pos-right-2 { transform: translateX(470px) rotateY(-30deg) scale(0.62); z-index: 1; filter: blur(3px); opacity: 0.5; }
+    .directions-carousel .direction-card.pos-right-2 .direction-info { opacity: 0; transform: translateY(14px); }
+    .directions-carousel .direction-card.pos-right-2:hover { border-color: var(--border-glow); filter: blur(1.5px); }
+    .directions-carousel .direction-card.pos-hidden { transform: translateX(0) rotateY(0deg) scale(0); z-index: 0; opacity: 0; pointer-events: none; }
+    .direction-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.25); border-radius: var(--radius-pill); color: var(--accent-bright); font-size: 0.78rem; font-weight: 600; text-decoration: none; transition: all 0.2s; backdrop-filter: blur(8px); }
+    .direction-btn:hover { background: rgba(168,85,247,0.2); border-color: var(--accent); box-shadow: 0 0 16px rgba(168,85,247,0.2); }
+    .direction-btn svg { width: 12px; height: 12px; }
+    .carousel-nav { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 24px; }
+    .carousel-arrow { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; color: var(--text-muted); cursor: pointer; transition: all 0.25s; }
+    .carousel-arrow:hover { border-color: var(--border-glow); color: var(--accent-bright); background: rgba(168,85,247,0.1); box-shadow: 0 0 16px rgba(168,85,247,0.12); }
+    .carousel-arrow svg { width: 18px; height: 18px; }
+    .carousel-dots { display: flex; gap: 10px; }
+    .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-dim); cursor: pointer; transition: all 0.35s; border: none; padding: 0; }
+    .carousel-dot.active { background: var(--accent); box-shadow: 0 0 10px var(--accent-glow); transform: scale(1.4); }
+
+    .schedule-section { background: var(--bg-deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .schedule-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(168,85,247,0.06) 0%, transparent 60%); pointer-events: none; filter: blur(40px); }
+    .schedule-inner { max-width: var(--max-w); margin: 0 auto; padding: 100px 40px; position: relative; }
+    .schedule-group { margin-top: 48px; }
+    .schedule-group-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .schedule-group-badge { padding: 6px 16px; background: var(--gradient-main); border-radius: var(--radius-pill); font-size: 0.78rem; font-weight: 600; color: #fff; letter-spacing: 0.02em; }
+    .schedule-group-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--border-glow), transparent); }
+    .schedule-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+    .schedule-card { display: flex; align-items: center; gap: 16px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); backdrop-filter: blur(12px); transition: border-color 0.3s, transform 0.2s, box-shadow 0.3s; }
+    .schedule-card:hover { border-color: var(--border-glow); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(168,85,247,0.06); }
+    .schedule-card-time { flex-shrink: 0; text-align: center; min-width: 52px; }
+    .schedule-card-hour { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--accent-bright); line-height: 1; text-shadow: 0 0 16px var(--accent-glow); }
+    .schedule-card-divider { width: 1px; height: 36px; background: var(--border); flex-shrink: 0; }
+    .schedule-card-info { flex: 1; min-width: 0; }
+    .schedule-card-name { font-size: 0.88rem; font-weight: 600; line-height: 1.3; margin-bottom: 6px; }
+    .schedule-card-days { display: flex; gap: 4px; flex-wrap: wrap; }
+    .schedule-day { padding: 3px 8px; background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.15); border-radius: 6px; font-size: 0.68rem; font-weight: 500; color: var(--accent-bright); letter-spacing: 0.02em; }
+    .schedule-action { margin-top: 36px; text-align: center; }
+
+    .perf-teaser { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+    .perf-teaser-bg { position: absolute; inset: 0; }
+    .perf-teaser-bg video, .perf-teaser-bg img, .perf-teaser-bg iframe { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; filter: brightness(0.35) saturate(1.2); }
+    .perf-teaser-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, transparent 50%), linear-gradient(180deg, var(--bg) 0%, transparent 20%), linear-gradient(0deg, var(--bg) 0%, transparent 30%); }
+    .perf-teaser-content { position: relative; z-index: 1; max-width: var(--max-w); margin: 0 auto; margin-top: auto; padding: 60px 40px 80px; width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .perf-teaser h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 16px; }
+    .perf-teaser h2 .accent { background: var(--gradient-pink); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .perf-teaser p { color: var(--text-muted); font-size: 1.05rem; max-width: 480px; line-height: 1.7; margin-bottom: 32px; }
+
+    .teacher-section { position: relative; overflow: hidden; }
+    .teacher-section::before { content: ''; position: absolute; top: 50%; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 65%); pointer-events: none; filter: blur(60px); transform: translateY(-50%); }
+    .teacher-inner { max-width: var(--max-w); margin: 0 auto; padding: 100px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .teacher-photo { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3/4; border: 1px solid rgba(168,85,247,0.15); box-shadow: 0 0 50px rgba(168,85,247,0.08); }
+    .teacher-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .teacher-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(168,85,247,0.08), transparent 50%); pointer-events: none; }
+    .teacher-info h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px; }
+    .teacher-info h2 .accent { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .teacher-subtitle { color: var(--accent-bright); font-size: 0.85rem; font-weight: 500; margin-bottom: 20px; letter-spacing: 0.02em; }
+    .teacher-text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.75; margin-bottom: 28px; max-width: 460px; }
+    .teacher-stats { display: flex; gap: 32px; margin-bottom: 32px; }
+    .teacher-stat { text-align: left; }
+    .teacher-stat-num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 4px; }
+    .teacher-stat-label { font-size: 0.78rem; color: var(--text-dim); }
+
+    .reviews-section { background: var(--bg-deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .reviews-inner { max-width: var(--max-w); margin: 0 auto; padding: 100px 40px; }
+    .reviews-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; scrollbar-width: none; cursor: grab; }
+    .reviews-track:active { cursor: grabbing; }
+    .reviews-track::-webkit-scrollbar { display: none; }
+    .reviews-nav { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
+    .reviews-nav button { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; color: var(--text-muted); cursor: pointer; transition: all 0.25s; }
+    .reviews-nav button:hover { border-color: var(--border-glow); color: var(--accent-bright); background: rgba(168,85,247,0.1); box-shadow: 0 0 16px rgba(168,85,247,0.12); }
+    .reviews-nav button svg { width: 16px; height: 16px; }
+    .review-card { flex: 0 0 380px; scroll-snap-align: start; padding: 28px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); backdrop-filter: blur(12px); transition: border-color 0.3s; }
+    .review-card:hover { border-color: var(--border-glow); }
+    .review-stars { display: flex; gap: 3px; margin-bottom: 14px; color: #f59e0b; font-size: 0.85rem; }
+    .review-card blockquote { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 18px; font-style: italic; }
+    .review-author { display: flex; align-items: center; gap: 12px; }
+    .review-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(168,85,247,0.2); background: var(--surface); }
+    .review-name { font-size: 0.85rem; font-weight: 600; }
+    .review-role { font-size: 0.75rem; color: var(--text-dim); }
+    .reviews-action { margin-top: 32px; text-align: center; }
+
+    .gallery-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 0; padding: 40px 0; position: relative; min-height: 500px; }
+    .gallery-item { width: 220px; height: 280px; border-radius: 16px; overflow: hidden; position: relative; cursor: pointer; transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1), z-index 0s; flex-shrink: 0; margin: -12px -8px; }
+    .gallery-item img, .gallery-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-item:nth-child(1) { transform: rotate(-4deg) translateY(10px); z-index: 1; }
+    .gallery-item:nth-child(2) { transform: rotate(3deg) translateY(-15px); z-index: 2; }
+    .gallery-item:nth-child(3) { transform: rotate(-2deg) translateY(20px); z-index: 3; }
+    .gallery-item:nth-child(4) { transform: rotate(5deg) translateY(-5px); z-index: 4; }
+    .gallery-item:nth-child(5) { transform: rotate(-3deg) translateY(15px); z-index: 5; }
+    .gallery-item:nth-child(6) { transform: rotate(2deg) translateY(-10px); z-index: 6; }
+    .gallery-item:nth-child(7) { transform: rotate(-5deg) translateY(5px); z-index: 7; }
+    .gallery-item:nth-child(8) { transform: rotate(4deg) translateY(-8px); z-index: 8; }
+    .gallery-item:nth-child(9) { transform: rotate(-3deg) translateY(12px); z-index: 9; }
+    .gallery-item:hover { transform: rotate(0deg) translateY(0) scale(1.12) !important; z-index: 100 !important; box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(168,85,247,0.2); transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1), z-index 0s 0s; }
+    .gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,8,14,0.5) 0%, transparent 40%); opacity: 0; transition: opacity 0.3s; border-radius: 16px; pointer-events: none; }
+    .gallery-item:hover::after { opacity: 1; }
+
+    .lightbox { position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.92); backdrop-filter: blur(16px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .lightbox.active { opacity: 1; pointer-events: all; }
+    .lightbox-content { max-width: 90vw; max-height: 90vh; position: relative; }
+    .lightbox-content img, .lightbox-content video { max-width: 90vw; max-height: 85vh; border-radius: var(--radius-sm); object-fit: contain; }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; width: 44px; height: 44px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; cursor: pointer; transition: background 0.2s; z-index: 501; }
+    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+    .cta-section { position: relative; padding: 100px 40px; text-align: center; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 700px; height: 500px; background: radial-gradient(ellipse, rgba(168,85,247,0.1) 0%, transparent 55%); pointer-events: none; filter: blur(50px); }
+    .cta-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+    .cta-content h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .cta-content h2 .accent { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .cta-content p { color: var(--text-muted); font-size: 1rem; margin-bottom: 32px; line-height: 1.7; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    .footer { position: relative; border-top: 1px solid var(--border); background: var(--bg-deep); overflow: hidden; }
+    .footer::before { content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 140%; height: 300px; background: radial-gradient(ellipse at center top, rgba(168,85,247,0.25) 0%, rgba(124,58,237,0.12) 40%, transparent 70%); pointer-events: none; z-index: 0; }
+    .footer-main { position: relative; z-index: 1; max-width: var(--max-w); margin: 0 auto; padding: 80px 40px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; }
+    .footer-logo-bg { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1100px; pointer-events: none; z-index: 0; opacity: 0.06; }
+    .footer-logo-bg svg { width: 100%; height: auto; display: block; }
+    .footer-brand-text { font-size: 0.85rem; color: var(--text-muted); margin-top: 12px; line-height: 1.65; max-width: 280px; }
+    .footer-col h4 { font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--accent-bright); }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; color: var(--text-muted); font-size: 0.85rem; }
+    .footer-contact-item svg { width: 16px; height: 16px; color: var(--accent-bright); flex-shrink: 0; margin-top: 2px; }
+    .footer-map { width: 100%; height: 180px; border-radius: var(--radius-sm); border: 1px solid var(--border); overflow: hidden; margin-top: 12px; }
+    .footer-map iframe { width: 100%; height: 100%; border: none; filter: grayscale(0.6) brightness(0.7); }
+    .footer-bottom { position: relative; z-index: 1; max-width: var(--max-w); margin: 0 auto; padding: 20px 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--text-dim); }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-social { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+    .footer-social:hover { border-color: var(--accent-bright); color: var(--accent-bright); box-shadow: 0 0 12px var(--accent-glow); }
+    .footer-social svg { width: 15px; height: 15px; }
+
+    .mobile-menu { position: fixed; inset: 0; z-index: 200; background: rgba(8,8,14,0.97); backdrop-filter: blur(24px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .mobile-menu.active { opacity: 1; pointer-events: all; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--accent-bright); }
+    .mobile-close { position: absolute; top: 18px; right: 22px; background: none; border: none; color: var(--text); font-size: 2rem; cursor: pointer; }
+    .mobile-menu-cta { margin-top: 12px; padding: 14px 36px; }
+    .mobile-menu-contacts { display: flex; gap: 16px; margin-top: 8px; }
+
+    @media (max-width: 1100px) { .nav-links { display: none; } .nav-center { gap: 12px; } .nav-burger { display: flex; } .advantages-grid { grid-template-columns: 1fr 1fr; } .schedule-cards { grid-template-columns: 1fr; } .gallery-item { width: 190px; height: 240px; } .directions-carousel .direction-card { width: 220px; } .directions-carousel .direction-card.pos-left-1 { transform: translateX(-180px) rotateY(12deg) scale(0.78); } .directions-carousel .direction-card.pos-right-1 { transform: translateX(180px) rotateY(-12deg) scale(0.78); } .directions-carousel .direction-card.pos-left-2 { opacity: 0.25; filter: blur(5px); } .directions-carousel .direction-card.pos-right-2 { opacity: 0.25; filter: blur(5px); } }
+    @media (max-width: 768px) { .section { padding: 72px 20px; } .nav { padding: 0 20px; } .hero { padding: 90px 20px 60px; } .hero-content { flex-direction: column; gap: 32px; } .advantages-grid { grid-template-columns: 1fr; } .teacher-inner { grid-template-columns: 1fr; gap: 32px; padding: 72px 20px; } .teacher-photo { max-width: 400px; margin: 0 auto; } .perf-teaser-content { padding: 72px 20px; } .gallery-grid { flex-direction: column; align-items: center; gap: 0; padding: 20px 0; min-height: auto; } .gallery-item { width: 85%; max-width: 340px; height: 260px; margin: -6px 0; transform: rotate(0deg) !important; } .gallery-item:nth-child(odd) { transform: rotate(-1.5deg) !important; } .gallery-item:nth-child(even) { transform: rotate(1.5deg) !important; } .footer-main { grid-template-columns: 1fr; gap: 28px; padding: 40px 20px; } .footer-bottom { flex-direction: column; gap: 14px; text-align: center; padding: 20px; } .schedule-inner { padding: 72px 20px; } .reviews-inner { padding: 72px 20px; } .review-card { flex: 0 0 300px; } .nav-phone { display: none; } .nav-socials { display: none; } .directions-carousel { height: 400px; perspective: 900px; } .directions-carousel .direction-card { width: 190px; } .directions-carousel .direction-card.pos-left-1 { transform: translateX(-140px) rotateY(10deg) scale(0.75); } .directions-carousel .direction-card.pos-right-1 { transform: translateX(140px) rotateY(-10deg) scale(0.75); } .directions-carousel .direction-card.pos-left-2, .directions-carousel .direction-card.pos-right-2 { opacity: 0; pointer-events: none; filter: blur(6px); } }
+    @media (max-width: 480px) { .hero h1 { font-size: 2.2rem; } .hero-actions { flex-direction: column; align-items: stretch; } .btn-primary, .btn-secondary { width: 100%; text-align: center; } .gallery-item { width: 90%; max-width: 300px; height: 220px; margin: -4px 0; } .gallery-item:nth-child(odd) { transform: rotate(-1deg) !important; } .gallery-item:nth-child(even) { transform: rotate(1deg) !important; } .cta-actions { flex-direction: column; align-items: center; } .teacher-stats { flex-wrap: wrap; gap: 20px; } }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow ambient-glow--1"></div>
+  <div class="ambient-glow ambient-glow--2"></div>
+  <div class="ambient-glow ambient-glow--3"></div>
+  <div class="ambient-glow ambient-glow--4"></div>
+
+  <nav class="nav">
+    <a href="#" class="nav-logo">Ви<span>Дэнс</span></a>
+    <div class="nav-center">
+      <ul class="nav-links">
+        <li><a href="#hero">Главная</a></li>
+        <li><a href="#directions">Направления</a></li>
+        <li><a href="#schedule">Расписание</a></li>
+<li><a href="performances.html">Выступления</a></li>
+        <li><a href="#teacher">Преподаватель</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="nav-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        7 978 74 96 535
+      </a>
+      <div class="nav-socials">
+        <a href="#" class="nav-social" aria-label="ВКонтакте"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.391 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.12-5.339-3.202-2.17-3.042-2.763-5.339-2.763-5.814 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.847 2.49 2.27 4.675 2.862 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.644v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.253-1.406 2.15-3.574 2.15-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.644-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg></a>
+        <a href="#" class="nav-social" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      </div>
+      <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="nav-cta">Записаться</a>
+    </div>
+    <button class="nav-burger" onclick="document.querySelector('.mobile-menu').classList.add('active')" aria-label="Меню"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu">
+    <button class="mobile-close" onclick="this.parentElement.classList.remove('active')" aria-label="Закрыть">&times;</button>
+    <a href="#hero" onclick="this.parentElement.classList.remove('active')">Главная</a>
+    <a href="#directions" onclick="this.parentElement.classList.remove('active')">Направления</a>
+    <a href="#schedule" onclick="this.parentElement.classList.remove('active')">Расписание</a>
+    <a href="#performances" onclick="this.parentElement.classList.remove('active')">Выступления</a>
+    <a href="#teacher" onclick="this.parentElement.classList.remove('active')">Преподаватель</a>
+    <a href="#reviews" onclick="this.parentElement.classList.remove('active')">Отзывы</a>
+    <a href="#contacts" onclick="this.parentElement.classList.remove('active')">Контакты</a>
+    <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="btn-primary mobile-menu-cta" onclick="this.parentElement.classList.remove('active')">Записаться</a>
+    <div class="mobile-menu-contacts">
+      <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="nav-social" aria-label="Телефон"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></a>
+      <a href="#" class="nav-social" aria-label="ВКонтакте"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.391 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.12-5.339-3.202-2.17-3.042-2.763-5.339-2.763-5.814 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.847 2.49 2.27 4.675 2.862 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.644v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.253-1.406 2.15-3.574 2.15-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.644-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg></a>
+      <a href="#" class="nav-social" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+    </div>
+  </div>
+
+  <section class="hero" id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-darken"></div>
+    <div class="hero-logo">
+      <svg width="2391" height="444" viewBox="0 0 2391 444" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1925.37 0C2009.97 0 2075.48 19.6016 2075.48 94.9131V151.655H1967.16V70.6689C1967.16 50.5515 1965.09 24.2441 1925.37 24.2441C1887.2 24.2443 1877.92 50.0358 1877.92 75.3115V367.272C1877.92 393.064 1887.2 418.856 1925.37 418.856C1964.58 418.856 1967.16 392.033 1967.16 371.915V290.93H2075.48V347.671C2075.48 422.982 2009.97 443.101 1925.37 443.101C1841.29 443.101 1769.08 426.077 1769.08 347.671C1769.08 289.382 1769.59 163.003 1769.59 95.4287C1769.59 17.0225 1841.29 4.94379e-05 1925.37 0ZM212.523 382.748L317.237 5.1582H362.114L209.944 437.426H126.379L0 5.1582H111.936L212.523 382.748ZM516.736 437.426H406.348V5.1582H516.736V437.426ZM854.05 5.1582C951.026 5.15822 997.452 45.393 998.483 120.188V321.88C998.483 398.739 952.573 437.426 854.565 437.426H677.119V5.1582H854.05ZM1366.35 437.426H1256.47L1225.01 322.396L1094.5 318.784L1065.1 437.426H1018.68L1161.05 5.1582H1242.03L1366.35 437.426ZM1700.61 354.377L1675.34 5.1582H1718.15V437.426H1627.88L1420 49.0039L1448.89 437.426H1403.49V5.1582H1512.33L1700.61 354.377ZM2390.01 38.1719L2234.23 29.4023V200.143L2347.72 195.501V229.029L2234.23 224.903V412.666L2390.01 403.896V437.426H2124.88V5.1582H2390.01V38.1719ZM790.087 413.182H843.733C882.421 413.181 888.61 381.716 889.126 359.02V83.5645C888.61 59.8363 882.42 28.887 843.218 28.8867H790.087V413.182ZM1100.69 293.509L1216.76 290.414L1156.92 71.1846L1100.69 293.509Z" fill="white"/>
+      </svg>
+    </div>
+    <div class="hero-logo-sub">Танцевальная студия в&nbsp;Севастополе</div>
+    <div class="hero-bg">
+      <div style="position: absolute; inset: 0; width: 100%; height: 100%;"><iframe src="https://kinescope.io/embed/oiCXrKFnqsVxMcgwR4oQcZ?autoplay=1&loop=1&mute=1" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0" allowfullscreen style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;"></iframe></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="hero-sub">Обучаем с&nbsp;нуля. Strip, high heels, twerk, боди пластика и&nbsp;микс стилей — индивидуально и&nbsp;в&nbsp;группах в&nbsp;Севастополе</p>
+        <div class="hero-actions">
+          <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="btn-primary">Записаться на пробное</a>
+          <div class="hero-actions-group">
+            <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="btn-secondary">Заказать выступление</a>
+            <a href="performances.html" class="btn-secondary btn-secondary--sm">Подробнее</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="advantages">
+    <div class="section-header"><h2 class="section-title">Почему <span class="accent">ВиДэнс</span></h2></div>
+    <div class="advantages-grid">
+      <div class="advantage-card"><div class="advantage-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div><h3>Обучение с&nbsp;нуля</h3><p>Начни танцевать с&nbsp;любого уровня — мы подстроим программу под&nbsp;тебя</p></div>
+      <div class="advantage-card"><div class="advantage-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg></div><h3>Индивидуальные и групповые</h3><p>Занятия в&nbsp;мини-группах и&nbsp;персонально — выбирай комфортный формат</p></div>
+      <div class="advantage-card"><div class="advantage-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg></div><h3>20+ лет опыта</h3><p>Руководитель с&nbsp;более чем двадцатилетним танцевальным стажем</p></div>
+      <div class="advantage-card"><div class="advantage-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621.504 1.125 1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75c.621 0 1.125.504 1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m0 0h-1.5"/></svg></div><h3>Коммерческие выступления</h3><p>Ставим номера для&nbsp;корпоративов, мероприятий и&nbsp;съёмок на&nbsp;профессиональном уровне</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="directions">
+    <div class="section-header"><h2 class="section-title">Наши <span class="accent">направления</span></h2><p class="section-desc">Выбери свой стиль и&nbsp;начни танцевать уже сегодня</p></div>
+    <div class="directions-carousel" id="directionsCarousel">
+      <div class="direction-card" data-index="0"><img src="images/1.png" alt="Strip" loading="lazy"><div class="direction-info"><h3>Strip</h3><p>Пластичность, женственность и уверенность</p><a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="direction-btn">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a></div></div>
+      <div class="direction-card" data-index="1"><img src="images/2.png" alt="High Heels" loading="lazy"><div class="direction-info"><h3>High Heels</h3><p>Хореография на&nbsp;каблуках — сила и&nbsp;грация</p><a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="direction-btn">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a></div></div>
+      <div class="direction-card" data-index="2"><img src="images/3.png" alt="Twerk" loading="lazy"><div class="direction-info"><h3>Twerk</h3><p>Энергия, ритм и свободное движение</p><a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="direction-btn">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a></div></div>
+      <div class="direction-card" data-index="3"><img src="images/4.png" alt="Боди пластика" loading="lazy"><div class="direction-info"><h3>Боди пластика</h3><p>Осознанность тела и выразительность</p><a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="direction-btn">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a></div></div>
+      <div class="direction-card" data-index="4"><img src="images/5.png" alt="Микс стилей" loading="lazy"><div class="direction-info"><h3>Микс стилей</h3><p>Комбинация направлений для&nbsp;универсальных танцоров</p><a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="direction-btn">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></a></div></div>
+    </div>
+    <div class="carousel-nav">
+      <button class="carousel-arrow" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg></button>
+      <div class="carousel-dots" id="carouselDots"></div>
+      <button class="carousel-arrow" aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </section>
+
+  <section class="schedule-section" id="schedule">
+    <div class="schedule-inner">
+      <div class="section-header"><h2 class="section-title">Расписание <span class="accent">занятий</span></h2></div>
+      <div class="schedule-group">
+        <div class="schedule-group-header"><span class="schedule-group-badge">Детские группы</span><div class="schedule-group-line"></div></div>
+        <div class="schedule-cards">
+          <div class="schedule-card"><div class="schedule-card-time"><div class="schedule-card-hour">17:45</div></div><div class="schedule-card-divider"></div><div class="schedule-card-info"><div class="schedule-card-name">Современные танцы 10–17 лет</div><div class="schedule-card-days"><span class="schedule-day">Пн</span><span class="schedule-day">Ср</span></div></div></div>
+        </div>
+      </div>
+      <div class="schedule-group">
+        <div class="schedule-group-header"><span class="schedule-group-badge">Взрослые группы</span><div class="schedule-group-line"></div></div>
+        <div class="schedule-cards">
+          <div class="schedule-card"><div class="schedule-card-time"><div class="schedule-card-hour">9:00</div></div><div class="schedule-card-divider"></div><div class="schedule-card-info"><div class="schedule-card-name">Strip + High Heels</div><div class="schedule-card-days"><span class="schedule-day">Пн</span><span class="schedule-day">Ср</span><span class="schedule-day">Пт</span></div></div></div>
+          <div class="schedule-card"><div class="schedule-card-time"><div class="schedule-card-hour">10:00</div></div><div class="schedule-card-divider"></div><div class="schedule-card-info"><div class="schedule-card-name">Пластика тела 40+</div><div class="schedule-card-days"><span class="schedule-day">Пн</span><span class="schedule-day">Ср</span><span class="schedule-day">Пт</span></div></div></div>
+          <div class="schedule-card"><div class="schedule-card-time"><div class="schedule-card-hour">16:30</div></div><div class="schedule-card-divider"></div><div class="schedule-card-info"><div class="schedule-card-name">ВиДэнс Choreo для&nbsp;начинающих</div><div class="schedule-card-days"><span class="schedule-day">Пн</span><span class="schedule-day">Ср</span></div></div></div>
+          <div class="schedule-card"><div class="schedule-card-time"><div class="schedule-card-hour">18:40</div></div><div class="schedule-card-divider"></div><div class="schedule-card-info"><div class="schedule-card-name">ВиДэнс Choreo</div><div class="schedule-card-days"><span class="schedule-day">Пн</span><span class="schedule-day">Ср</span></div></div></div>
+          <div class="schedule-card"><div class="schedule-card-time"><div class="schedule-card-hour">20:00</div></div><div class="schedule-card-divider"></div><div class="schedule-card-info"><div class="schedule-card-name">High Heels для&nbsp;начинающих</div><div class="schedule-card-days"><span class="schedule-day">Пн</span><span class="schedule-day">Ср</span></div></div></div>
+          <div class="schedule-card"><div class="schedule-card-time"><div class="schedule-card-hour">18:30</div></div><div class="schedule-card-divider"></div><div class="schedule-card-info"><div class="schedule-card-name">Мастер-классы</div><div class="schedule-card-days"><span class="schedule-day">Пт</span></div></div></div>
+        </div>
+      </div>
+      <div class="schedule-action"><a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="btn-secondary">Уточнить место в&nbsp;группе</a></div>
+    </div>
+  </section>
+
+  <section class="perf-teaser" id="performances">
+    <div class="perf-teaser-bg"><div style="position: absolute; inset: 0; width: 100%; height: 100%;"><iframe src="https://kinescope.io/embed/mDnwSAwGwBgFnYcvwDgvqr?autoplay=1&loop=1&mute=1" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0" allowfullscreen style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;"></iframe></div></div>
+    <div class="perf-teaser-content">
+      <h2>Постановка танцев <span class="accent">на&nbsp;корпоративы, мероприятия и&nbsp;съёмки</span></h2>
+      <p>Услуги профессиональных хореографов: создаем уникальные танцевальные шоу для&nbsp;съёмок, клипов, праздников и&nbsp;корпоративов</p>
+      <a href="performances.html" class="btn-primary">Подробнее о&nbsp;выступлениях</a>
+    </div>
+  </section>
+
+  <section class="teacher-section" id="teacher">
+    <div class="teacher-inner">
+      <div class="teacher-photo"><img src="Image/45.jpg" alt="Виолетта — руководитель ВиДэнс" loading="lazy"></div>
+      <div class="teacher-info">
+        <h2>Виолетта — руководитель <span class="accent">и&nbsp;хореограф-постановщик</span></h2>
+        <div class="teacher-subtitle">Основатель студии ВиДэнс</div>
+        <p class="teacher-text">Более 20&nbsp;лет танцевального опыта, профессиональное образование по&nbsp;направлению хореографии и&nbsp;многолетняя работа постановщиком и&nbsp;тренером. Виолетта создает индивидуальный подход для&nbsp;каждого ученика — от&nbsp;первого занятия до&nbsp;профессионального уровня.</p>
+        <div class="teacher-stats">
+          <div class="teacher-stat"><div class="teacher-stat-num">20+</div><div class="teacher-stat-label">лет опыта</div></div>
+          <div class="teacher-stat"><div class="teacher-stat-num">500+</div><div class="teacher-stat-label">учеников</div></div>
+          <div class="teacher-stat"><div class="teacher-stat-num">6</div><div class="teacher-stat-label">направлений</div></div>
+        </div>
+        <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="btn-primary">Записаться к&nbsp;Виолетте</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews-section" id="reviews">
+    <div class="reviews-inner">
+      <div class="section-header"><h2 class="section-title">Отзывы наших <span class="accent">учеников</span></h2></div>
+      <div class="reviews-track">
+        <div class="review-card"><div class="review-stars">★★★★★</div><blockquote>Это мое любимое место уже больше года. Такого качественного индивидуального подхода я не встречала. Работа с&nbsp;телом через&nbsp;танец — это талант. Тело подтянуто, настроение улучшено, самооценка поднята. Вы все еще думаете идти или не идти? Приходите обязательно!</blockquote><div class="review-author"><div><div class="review-name">Елена</div><div class="review-role">Yandex Отзывы</div></div></div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><blockquote>Замечательная студия! Уютная атмосфера, профессиональный педагог и&nbsp;продуманные программы для&nbsp;любого уровня. За&nbsp;пару месяцев занятий почувствовала себя увереннее, подтянулась и&nbsp;просто влюбилась в&nbsp;танцы. Рекомендую всем, кто хочет двигаться с&nbsp;удовольствием!</blockquote><div class="review-author"><div><div class="review-name">Ольчик Ребендяга</div><div class="review-role">Yandex Отзывы</div></div></div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><blockquote>Хожу на&nbsp;занятия к&nbsp;Виолетте и&nbsp;очень хочу выразить благодарность за&nbsp;такой подход преподавания. Очень легко, доступно, плавно и&nbsp;красиво. Пробовала много школ по&nbsp;танцам — тут самая лучшая атмосфера, лучший преподаватель и&nbsp;лучший результат.</blockquote><div class="review-author"><div><div class="review-name">Юлия Полтавская</div><div class="review-role">Yandex Отзывы</div></div></div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><blockquote>Нереальная атмосфера и&nbsp;профессионализм в&nbsp;студии. Разные стили, которым с&nbsp;легкостью обучают. Все очень непринуждённо, кайфово. Плюсом съёмки, фото, совместные корпоративы. Бонусом получаешь результаты по&nbsp;коррекции фигуры и&nbsp;идеальную растяжку.</blockquote><div class="review-author"><div><div class="review-name">Виктория Хорунжая</div><div class="review-role">Yandex Отзывы</div></div></div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><blockquote>Супер тренер! Заряжает положительной энергией! Интересно заниматься, потому что всегда что-то новое. За&nbsp;пол года занятий я похудела на&nbsp;10&nbsp;кг и&nbsp;подтянула тело, как не получалось в&nbsp;тренажерке. Всем рекомендую!</blockquote><div class="review-author"><div><div class="review-name">Алла Нестерова</div><div class="review-role">Yandex Отзывы</div></div></div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><blockquote>Лучшая студия танцев для&nbsp;детей и&nbsp;взрослых. Ходим с&nbsp;дочкой уже несколько лет, внимательный тренер, который найдет к&nbsp;каждому подход. Позитивная атмосфера, хорошее настроение обеспечено.</blockquote><div class="review-author"><div><div class="review-name">Юлия Кохановская</div><div class="review-role">Yandex Отзывы</div></div></div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><blockquote>Супер школа. Преподаватель всегда на&nbsp;позитиве, очень образована в&nbsp;плане хореографии, правильный подход к&nbsp;каждому. Приятно заниматься, хорошая атмосфера. Рекомендую всем!</blockquote><div class="review-author"><div><div class="review-name">Богдана Комарова</div><div class="review-role">Yandex Отзывы</div></div></div></div>
+      </div>
+      <div class="reviews-action"><a href="https://yandex.ru/maps/org/vi_dens/195329888757/reviews/?ll=33.434864%2C44.582035&z=16" target="_blank" rel="noopener" class="btn-secondary">Смотреть больше отзывов</a></div>
+      <div class="reviews-nav">
+        <button onclick="document.querySelector('.reviews-track').scrollBy({left:-400,behavior:'smooth'})" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg></button>
+        <button onclick="document.querySelector('.reviews-track').scrollBy({left:400,behavior:'smooth'})" aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="section-header"><h2 class="section-title">Галерея <span class="accent">ВиДэнс</span></h2></div>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="Image/101238.jpg" alt="Выступление" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="Image/103176.jpg" alt="Тренировка" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="Image/115509.jpg" alt="Шоу" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="Image/3327 (1).jpg" alt="Танец" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="Image/3718.jpg" alt="Корпоратив" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="Image/D5377F44-017A-4F9E-9189-A1B5D8573FEF (1).jpg" alt="Съёмка" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="Image/photo_2026-05-19_11-37-01.jpg" alt="Фестиваль" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="Image/123.JPG" alt="Фото" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox(this)"><img src="Image/1234.JPG" alt="Фото" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="cta">
+    <div class="cta-content">
+      <h2>Готова <span class="accent">попробовать</span>?</h2>
+      <p>Запишись на&nbsp;бесплатное пробное занятие уже сегодня</p>
+      <div class="cta-actions">
+        <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="btn-primary">Записаться на&nbsp;пробное занятие</a>
+        <a href="performances.html" class="btn-secondary">Заказать выступление</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="contacts">
+    <div class="footer-main">
+      <div class="footer-brand"><a href="#" class="nav-logo">Ви<span>Дэнс</span></a><p class="footer-brand-text">Танцевальная студия в&nbsp;Севастополе. Обучение, коммерческие выступления и&nbsp;постановки.</p></div>
+      <div class="footer-col"><h4>Студия</h4><ul><li><a href="#directions">Направления</a></li><li><a href="#schedule">Расписание</a></li><li><a href="performances.html">Выступления</a></li><li><a href="#teacher">Преподаватель</a></li><li><a href="#reviews">Отзывы</a></li></ul></div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg><span>Сталинграда 22, отель «Атлантика», Севастополь</span></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">7 978 74 96 535</a></div>
+        <div class="footer-map"><iframe src="https://yandex.ru/map-widget/v1/?ll=33.53%2C44.61&z=17&pt=33.53%2C44.61%2Cpm2rdm" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      </div>
+      <div class="footer-col">
+        <h4>Соцсети</h4>
+        <div class="footer-socials" style="margin-bottom: 16px;">
+          <a href="#" class="footer-social" aria-label="ВКонтакте"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.391 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.12-5.339-3.202-2.17-3.042-2.763-5.339-2.763-5.814 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.847 2.49 2.27 4.675 2.862 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.644v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.253-1.406 2.15-3.574 2.15-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.644-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg></a>
+          <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="footer-social" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2025 ВиДэнс. Все права защищены</span></div>
+    <div class="footer-logo-bg">
+      <svg width="2391" height="444" viewBox="0 0 2391 444" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1925.37 0C2009.97 0 2075.48 19.6016 2075.48 94.9131V151.655H1967.16V70.6689C1967.16 50.5515 1965.09 24.2441 1925.37 24.2441C1887.2 24.2443 1877.92 50.0358 1877.92 75.3115V367.272C1877.92 393.064 1887.2 418.856 1925.37 418.856C1964.58 418.856 1967.16 392.033 1967.16 371.915V290.93H2075.48V347.671C2075.48 422.982 2009.97 443.101 1925.37 443.101C1841.29 443.101 1769.08 426.077 1769.08 347.671C1769.08 289.382 1769.59 163.003 1769.59 95.4287C1769.59 17.0225 1841.29 4.94379e-05 1925.37 0ZM212.523 382.748L317.237 5.1582H362.114L209.944 437.426H126.379L0 5.1582H111.936L212.523 382.748ZM516.736 437.426H406.348V5.1582H516.736V437.426ZM854.05 5.1582C951.026 5.15822 997.452 45.393 998.483 120.188V321.88C998.483 398.739 952.573 437.426 854.565 437.426H677.119V5.1582H854.05ZM1366.35 437.426H1256.47L1225.01 322.396L1094.5 318.784L1065.1 437.426H1018.68L1161.05 5.1582H1242.03L1366.35 437.426ZM1700.61 354.377L1675.34 5.1582H1718.15V437.426H1627.88L1420 49.0039L1448.89 437.426H1403.49V5.1582H1512.33L1700.61 354.377ZM2390.01 38.1719L2234.23 29.4023V200.143L2347.72 195.501V229.029L2234.23 224.903V412.666L2390.01 403.896V437.426H2124.88V5.1582H2390.01V38.1719ZM790.087 413.182H843.733C882.421 413.181 888.61 381.716 889.126 359.02V83.5645C888.61 59.8363 882.42 28.887 843.218 28.8867H790.087V413.182ZM1100.69 293.509L1216.76 290.414L1156.92 71.1846L1100.69 293.509Z" fill="white"/>
+      </svg>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+    <div class="lightbox-content" id="lightbox-content"></div>
+  </div>
+
+  <script>
+    function openLightbox(el) {
+      const lb = document.getElementById('lightbox');
+      const content = document.getElementById('lightbox-content');
+      const img = el.querySelector('img');
+      const video = el.querySelector('video');
+      content.innerHTML = '';
+      if (video && video.querySelector('source')) {
+        const v = document.createElement('video');
+        v.src = video.querySelector('source').src;
+        v.controls = true;
+        v.autoplay = true;
+        v.style.maxWidth = '90vw';
+        v.style.maxHeight = '85vh';
+        v.style.borderRadius = '12px';
+        content.appendChild(v);
+      } else if (img) {
+        const i = document.createElement('img');
+        i.src = img.src;
+        i.alt = img.alt;
+        i.style.maxWidth = '90vw';
+        i.style.maxHeight = '85vh';
+        i.style.borderRadius = '12px';
+        content.appendChild(i);
+      }
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(e) {
+      if (e.target === e.currentTarget || e.target.classList.contains('lightbox-close')) {
+        const lb = document.getElementById('lightbox');
+        const content = document.getElementById('lightbox-content');
+        const video = content.querySelector('video');
+        if (video) video.pause();
+        content.innerHTML = '';
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { closeLightbox({ target: document.getElementById('lightbox'), currentTarget: document.getElementById('lightbox') }); }
+    });
+    (function() {
+      var carousel = document.getElementById('directionsCarousel');
+      if (!carousel) return;
+      var cards = carousel.querySelectorAll('.direction-card');
+      var dotsContainer = document.getElementById('carouselDots');
+      var total = cards.length;
+      var centerIndex = 2;
+      var autoTimer;
+      var posClasses = ['pos-left-2', 'pos-left-1', 'pos-center', 'pos-right-1', 'pos-right-2'];
+
+      function updateCarousel() {
+        cards.forEach(function(card, i) {
+          var offset = i - centerIndex;
+          if (offset > Math.floor(total / 2)) offset -= total;
+          if (offset < -Math.floor(total / 2)) offset += total;
+          card.classList.remove('pos-center', 'pos-left-1', 'pos-left-2', 'pos-right-1', 'pos-right-2', 'pos-hidden');
+          if (offset >= -2 && offset <= 2) {
+            card.classList.add(posClasses[offset + 2]);
+          } else {
+            card.classList.add('pos-hidden');
+          }
+        });
+        var dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach(function(dot, i) { dot.classList.toggle('active', i === centerIndex); });
+      }
+
+      function rotateCarousel(dir) {
+        centerIndex = (centerIndex + dir + total) % total;
+        updateCarousel();
+        resetAuto();
+      }
+
+      function resetAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(function() { rotateCarousel(1); }, 4000);
+      }
+
+      for (var i = 0; i < total; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === centerIndex ? ' active' : '');
+        dot.setAttribute('aria-label', 'Карточка ' + (i + 1));
+        (function(idx) {
+          dot.addEventListener('click', function() { centerIndex = idx; updateCarousel(); resetAuto(); });
+        })(i);
+        dotsContainer.appendChild(dot);
+      }
+
+      cards.forEach(function(card, i) {
+        card.addEventListener('click', function() {
+          centerIndex = i;
+          updateCarousel();
+          resetAuto();
+        });
+      });
+
+      var arrows = document.querySelectorAll('.carousel-nav .carousel-arrow');
+      if (arrows.length >= 2) {
+        arrows[0].addEventListener('click', function() { rotateCarousel(-1); });
+        arrows[1].addEventListener('click', function() { rotateCarousel(1); });
+      }
+
+      var touchStartX = 0;
+      carousel.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', function(e) {
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) rotateCarousel(diff > 0 ? 1 : -1);
+      }, { passive: true });
+
+      updateCarousel();
+      resetAuto();
+    })();
+
+    (function() {
+      var track = document.querySelector('.reviews-track');
+      if (!track) return;
+      var isDown = false, startX, scrollLeft;
+      track.addEventListener('mousedown', function(e) { isDown = true; startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
+      track.addEventListener('mouseleave', function() { isDown = false; });
+      track.addEventListener('mouseup', function() { isDown = false; });
+      track.addEventListener('mousemove', function(e) { if (!isDown) return; e.preventDefault(); var x = e.pageX - track.offsetLeft; track.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+    })();
+
+    (function() {
+      var heroIframe = document.querySelector('.hero-bg iframe');
+      if (!heroIframe) return;
+      var hero = document.getElementById('hero');
+      var baseSrc = heroIframe.src;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            heroIframe.src = baseSrc;
+          } else {
+            heroIframe.src = 'about:blank';
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(hero);
+    })();
+
+    (function() {
+      var perfIframe = document.querySelector('.perf-teaser-bg iframe');
+      if (!perfIframe) return;
+      var perf = document.getElementById('performances');
+      var baseSrc = perfIframe.src;
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            perfIframe.src = baseSrc;
+          } else {
+            perfIframe.src = 'about:blank';
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(perf);
+    })();
+  </script>
+
+</body>
+</html>

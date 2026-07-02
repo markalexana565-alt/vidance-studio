@@ -1,0 +1,9 @@
+.vercel
+.mimocode
+node_modules
+.vscode
+.agents
+SKILL.md
+skills-lock.json
+cloudinary-urls.json
+video/

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Постановка танцев — ВиДэнс</title>
+  <meta name="description" content="Постановка танцев на корпоративы, мероприятия и съёмки в Севастополе. Шоу-постановки, хореография для клипов и частных событий.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face { font-family: 'Bounded'; src: url('ofont.ru_Bounded_1.woff') format('woff'); font-weight: 400 800; font-display: swap; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #08080e; --bg-deep: #050509; --bg-surface: #0c0c14;
+      --surface: rgba(255,255,255,0.04); --surface-hover: rgba(255,255,255,0.07);
+      --accent: #a855f7; --accent-bright: #c084fc; --accent-deep: #7c3aed;
+      --accent-glow: rgba(168,85,247,0.35); --accent-glow-strong: rgba(168,85,247,0.55);
+      --pink: #e879a8; --pink-glow: rgba(232,121,168,0.3);
+      --text: #f0eef5; --text-muted: #9894a8; --text-dim: #5a5668;
+      --border: rgba(255,255,255,0.07); --border-glow: rgba(168,85,247,0.25);
+      --gradient-main: linear-gradient(135deg, #a855f7, #7c3aed);
+      --gradient-pink: linear-gradient(135deg, #e879a8, #a855f7);
+      --gradient-btn: linear-gradient(135deg, #a855f7, #7c3aed);
+      --radius: 16px; --radius-sm: 12px; --radius-xs: 8px; --radius-pill: 100px;
+      --font-display: 'Bounded', sans-serif; --font-body: 'Inter', sans-serif;
+      --max-w: 1280px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    .ambient-glow { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(100px); }
+    .ambient-glow--1 { width: 900px; height: 900px; top: -80px; left: -120px; background: radial-gradient(circle, rgba(168,85,247,0.3) 0%, transparent 55%); }
+    .ambient-glow--2 { width: 800px; height: 800px; top: 32%; right: -180px; background: radial-gradient(circle, rgba(124,58,237,0.22) 0%, transparent 55%); }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; height: 72px; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); background: rgba(8,8,14,0.78); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -0.01em; display: flex; align-items: center; gap: 2px; }
+    .nav-logo span { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-center { display: flex; align-items: center; gap: 32px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color 0.2s; white-space: nowrap; }
+    .nav-links a:hover { color: var(--accent-bright); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-phone { display: flex; align-items: center; gap: 6px; color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 500; transition: color 0.2s; white-space: nowrap; }
+    .nav-phone:hover { color: var(--text); }
+    .nav-socials { display: flex; gap: 8px; }
+    .nav-social { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+    .nav-social:hover { border-color: var(--border-glow); color: var(--accent-bright); background: rgba(168,85,247,0.08); }
+    .nav-social svg { width: 15px; height: 15px; }
+    .nav-cta { padding: 10px 22px; background: var(--gradient-btn); color: #fff; border: none; border-radius: var(--radius-pill); font-family: var(--font-body); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 0 16px var(--accent-glow); text-decoration: none; white-space: nowrap; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 0 28px var(--accent-glow-strong); }
+    .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav-burger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; padding: 100px 40px 80px; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; filter: brightness(0.35) saturate(1.2); }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg) 0%, transparent 25%), linear-gradient(0deg, var(--bg) 6%, transparent 45%), radial-gradient(ellipse at 50% 60%, rgba(168,85,247,0.12) 0%, transparent 50%); }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; text-align: center; }
+    .hero-eyebrow { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-bright); margin-bottom: 16px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .hero h1 .accent { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1rem; color: var(--text-muted); max-width: 580px; margin: 0 auto 32px; line-height: 1.7; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; padding: 14px 30px; background: var(--gradient-btn); color: #fff; border: none; border-radius: var(--radius-pill); font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; box-shadow: 0 0 20px var(--accent-glow); white-space: nowrap; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 36px var(--accent-glow-strong); }
+    .btn-primary:active { transform: translateY(0) scale(0.98); }
+    .btn-secondary { display: inline-flex; align-items: center; justify-content: center; padding: 14px 30px; background: transparent; color: var(--text); border: 1px solid var(--border-glow); border-radius: var(--radius-pill); font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: border-color 0.2s, background 0.2s, box-shadow 0.2s; text-decoration: none; white-space: nowrap; }
+    .btn-secondary:hover { border-color: var(--accent-bright); background: rgba(168,85,247,0.06); box-shadow: 0 0 18px rgba(168,85,247,0.12); }
+
+    .section { padding: 100px 40px; max-width: var(--max-w); margin: 0 auto; }
+    .section-header { margin-bottom: 48px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 10px; }
+    .section-title .accent { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-desc { color: var(--text-muted); font-size: 1rem; max-width: 500px; line-height: 1.7; }
+
+    .formats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .format-card { padding: 36px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); backdrop-filter: blur(12px); transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
+    .format-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gradient-main); opacity: 0; transition: opacity 0.3s; }
+    .format-card:hover { border-color: var(--border-glow); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(168,85,247,0.08); }
+    .format-card:hover::before { opacity: 1; }
+    .format-card-num { font-family: var(--font-display); font-size: 2rem; font-weight: 800; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; margin-bottom: 16px; }
+    .format-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .format-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.65; }
+
+    .steps-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: step; }
+    .step-card { padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); position: relative; transition: border-color 0.3s, transform 0.3s; counter-increment: step; }
+    .step-card:hover { border-color: var(--border-glow); transform: translateY(-3px); }
+    .step-card::before { content: counter(step); display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--gradient-main); border-radius: 50%; font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 18px; }
+    .step-card h3 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .step-card p { color: var(--text-muted); font-size: 0.82rem; line-height: 1.65; }
+
+    .reviews-b2b { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .review-b2b { padding: 32px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); backdrop-filter: blur(12px); transition: border-color 0.3s; }
+    .review-b2b:hover { border-color: var(--border-glow); }
+    .review-b2b blockquote { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .review-b2b-author { font-weight: 600; font-size: 0.85rem; }
+    .review-b2b-role { color: var(--text-dim); font-size: 0.78rem; }
+
+    .cta-section { position: relative; padding: 100px 40px; text-align: center; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 700px; height: 500px; background: radial-gradient(ellipse, rgba(168,85,247,0.1) 0%, transparent 55%); pointer-events: none; filter: blur(50px); }
+    .cta-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+    .cta-content h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .cta-content h2 .accent { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .cta-content p { color: var(--text-muted); font-size: 1rem; margin-bottom: 32px; line-height: 1.7; }
+
+    .form-group { margin-bottom: 16px; text-align: left; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; }
+    .form-group input, .form-group textarea { width: 100%; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-family: var(--font-body); font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-dim); }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-actions { margin-top: 24px; }
+
+    .footer { position: relative; border-top: 1px solid var(--border); background: var(--bg-deep); overflow: hidden; }
+    .footer::before { content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 140%; height: 300px; background: radial-gradient(ellipse at center top, rgba(168,85,247,0.25) 0%, rgba(124,58,237,0.12) 40%, transparent 70%); pointer-events: none; z-index: 0; }
+    .footer-main { position: relative; z-index: 1; max-width: var(--max-w); margin: 0 auto; padding: 80px 40px 40px; display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; }
+    .footer-logo-bg { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 90%; max-width: 1100px; pointer-events: none; z-index: 0; opacity: 0.06; }
+    .footer-logo-bg svg { width: 100%; height: auto; display: block; }
+    .footer-brand-text { font-size: 0.85rem; color: var(--text-muted); margin-top: 12px; line-height: 1.65; max-width: 280px; }
+    .footer-col h4 { font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 16px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--accent-bright); }
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; color: var(--text-muted); font-size: 0.85rem; }
+    .footer-contact-item svg { width: 16px; height: 16px; color: var(--accent-bright); flex-shrink: 0; margin-top: 2px; }
+    .footer-map { width: 100%; height: 180px; border-radius: var(--radius-sm); border: 1px solid var(--border); overflow: hidden; margin-top: 12px; }
+    .footer-map iframe { width: 100%; height: 100%; border: none; filter: grayscale(0.6) brightness(0.7); }
+    .footer-bottom { position: relative; z-index: 1; max-width: var(--max-w); margin: 0 auto; padding: 20px 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--text-dim); }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-social { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; color: var(--text-muted); text-decoration: none; transition: all 0.2s; }
+    .footer-social:hover { border-color: var(--accent-bright); color: var(--accent-bright); box-shadow: 0 0 12px var(--accent-glow); }
+    .footer-social svg { width: 15px; height: 15px; }
+
+    .mobile-menu { position: fixed; inset: 0; z-index: 200; background: rgba(8,8,14,0.97); backdrop-filter: blur(24px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .mobile-menu.active { opacity: 1; pointer-events: all; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; transition: color 0.2s; }
+    .mobile-menu a:hover { color: var(--accent-bright); }
+    .mobile-close { position: absolute; top: 18px; right: 22px; background: none; border: none; color: var(--text); font-size: 2rem; cursor: pointer; }
+
+    @media (max-width: 1100px) { .nav-links { display: none; } .nav-center { gap: 12px; } .nav-burger { display: flex; } .formats-grid { grid-template-columns: 1fr; } .steps-list { grid-template-columns: repeat(2, 1fr); } .reviews-b2b { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .section { padding: 72px 20px; } .nav { padding: 0 20px; } .hero { padding: 90px 20px 60px; } .steps-list { grid-template-columns: 1fr; } .footer-main { grid-template-columns: 1fr; gap: 28px; padding: 40px 20px; } .footer-bottom { flex-direction: column; gap: 14px; text-align: center; padding: 20px; } .nav-phone { display: none; } .nav-socials { display: none; } }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow ambient-glow--1"></div>
+  <div class="ambient-glow ambient-glow--2"></div>
+
+  <nav class="nav">
+    <a href="dance-studio.html" class="nav-logo">Ви<span>Дэнс</span></a>
+    <div class="nav-center">
+      <ul class="nav-links">
+        <li><a href="dance-studio.html">Главная</a></li>
+        <li><a href="dance-studio.html#directions">Направления</a></li>
+        <li><a href="dance-studio.html#schedule">Расписание</a></li>
+        <li><a href="performances.html">Выступления</a></li>
+        <li><a href="dance-studio.html#teacher">Преподаватель</a></li>
+        <li><a href="dance-studio.html#reviews">Отзывы</a></li>
+        <li><a href="dance-studio.html#contacts">Контакты</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="nav-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        7 978 74 96 535
+      </a>
+      <div class="nav-socials">
+        <a href="#" class="nav-social" aria-label="ВКонтакте"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.391 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.12-5.339-3.202-2.17-3.042-2.763-5.339-2.763-5.814 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.847 2.49 2.27 4.675 2.862 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.644v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.253-1.406 2.15-3.574 2.15-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.644-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg></a>
+        <a href="#" class="nav-social" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      </div>
+      <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="nav-cta">Обсудить проект</a>
+    </div>
+    <button class="nav-burger" onclick="document.querySelector('.mobile-menu').classList.add('active')" aria-label="Меню"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu">
+    <button class="mobile-close" onclick="this.parentElement.classList.remove('active')" aria-label="Закрыть">&times;</button>
+    <a href="dance-studio.html" onclick="this.parentElement.classList.remove('active')">Главная</a>
+    <a href="dance-studio.html#directions" onclick="this.parentElement.classList.remove('active')">Направления</a>
+    <a href="dance-studio.html#schedule" onclick="this.parentElement.classList.remove('active')">Расписание</a>
+    <a href="performances.html" onclick="this.parentElement.classList.remove('active')">Выступления</a>
+    <a href="dance-studio.html#teacher" onclick="this.parentElement.classList.remove('active')">Преподаватель</a>
+    <a href="dance-studio.html#reviews" onclick="this.parentElement.classList.remove('active')">Отзывы</a>
+    <a href="dance-studio.html#contacts" onclick="this.parentElement.classList.remove('active')">Контакты</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-bg"><img src="Image/3718.jpg" alt="Шоу-постановка ВиДэнс"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Шоу-постановки в&nbsp;Севастополе и&nbsp;Крыму</div>
+      <h1>Постановка танцев <span class="accent">на&nbsp;корпоративы, мероприятия и&nbsp;съёмки</span></h1>
+      <p class="hero-sub">Создаем эксклюзивные танцевальные номера, перформансы для&nbsp;брендов, музыкальных клипов и&nbsp;частных событий. Реализуем идею любой сложности — от&nbsp;обучения ваших сотрудников с&nbsp;нуля до&nbsp;режиссуры профессионального шоу-балета.</p>
+      <div class="hero-actions">
+        <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="btn-primary">Обсудить проект</a>
+        <a href="#stages" class="btn-secondary">Смотреть этапы работы</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="formats">
+    <div class="section-header"><h2 class="section-title">Форматы <span class="accent">и&nbsp;направления</span></h2></div>
+    <div class="formats-grid">
+      <div class="format-card"><div class="format-card-num">01</div><h3>Корпоративные шоу и тимбилдинг</h3><p>Тематические номера для&nbsp;масштабных праздников компании, юбилеев и&nbsp;презентаций. Интегрируем ценности вашего бренда и&nbsp;мягко вовлекаем команду в&nbsp;творческий процесс.</p></div>
+      <div class="format-card"><div class="format-card-num">02</div><h3>Режиссура для&nbsp;съёмок и&nbsp;клипов</h3><p>Хореография под&nbsp;ключ для&nbsp;музыкальных видео, рекламных роликов, кино и&nbsp;медиа-проектов. Работаем на&nbsp;камеру, выстраиваем ракурсы и&nbsp;мизансцены.</p></div>
+      <div class="format-card"><div class="format-card-num">03</div><h3>Частные ивент-перформансы</h3><p>Концептуальные свадебные танцы, яркие шоу-сюрпризы от&nbsp;друзей, постановки на&nbsp;выпускные и&nbsp;закрытые вечеринки.</p></div>
+      <div class="format-card"><div class="format-card-num">04</div><h3>Городские и фестивальные шоу</h3><p>Масштабные танцевальные перформансы для&nbsp;открытия площадок, городских праздников и&nbsp;fashion-показов.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="stages">
+    <div class="section-header"><h2 class="section-title">Как мы создаем <span class="accent">ваше шоу</span></h2></div>
+    <div class="steps-list">
+      <div class="step-card"><h3>Концепция и бриф</h3><p>Обсуждаем задачи, формат мероприятия, локацию, ваши пожелания по&nbsp;музыке и&nbsp;настроению номера.</p></div>
+      <div class="step-card"><h3>Сценарий и тайминг</h3><p>Разрабатываем детальный сюжет танца, утверждаем музыкальный трек и рассчитываем индивидуальную смету.</p></div>
+      <div class="step-card"><h3>Репетиционный процесс</h3><p>Проводим репетиции в&nbsp;оборудованных залах студии Vi&nbsp;Dance. Шаг за&nbsp;шагом выстраиваем хореографию и&nbsp;рисунок танца.</p></div>
+      <div class="step-card"><h3>Прогон на&nbsp;площадке</h3><p>Проводим финальную генеральную репетицию на&nbsp;вашей сцене, синхронизируем движения со&nbsp;звуком, режиссурой света и&nbsp;костюмами.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="b2b-reviews">
+    <div class="section-header"><h2 class="section-title">Что говорят <span class="accent">о&nbsp;нашей хореографии</span></h2></div>
+    <div class="reviews-b2b">
+      <div class="review-b2b"><blockquote>Заказывали постановку танца для&nbsp;сотрудников на&nbsp;новогодний корпоратив. Виолетта сотворила чудо: за&nbsp;5&nbsp;репетиций сплотила команду и&nbsp;сделала шоу, от&nbsp;которого все были в&nbsp;восторге!</blockquote><div class="review-b2b-author">Анна</div><div class="review-b2b-role">HR-директор</div></div>
+      <div class="review-b2b"><blockquote>Работали со&nbsp;студией над&nbsp;съёмкой промо-ролика. Хореография выстроена идеально под&nbsp;камеру, профессиональные танцоры, четкое соблюдение тайминга. Рекомендуем!</blockquote><div class="review-b2b-author">Максим</div><div class="review-b2b-role">Видеопродакшн</div></div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="cta-form">
+    <div class="cta-content">
+      <h2>Готовы создать <span class="accent">уникальное шоу</span>?</h2>
+      <p>Оставьте заявку, и&nbsp;мы свяжемся с&nbsp;вами для&nbsp;обсуждения идеи и&nbsp;индивидуального расчета проекта.</p>
+      <form onsubmit="event.preventDefault(); this.querySelector('.btn-primary').textContent='Отправлено!'; this.querySelector('.btn-primary').style.opacity='0.6'; this.querySelector('.btn-primary').disabled=true;">
+        <div class="form-group"><label for="name">Ваше имя / Компания</label><input type="text" id="name" placeholder="Имя или название компании" required></div>
+        <div class="form-group"><label for="phone">Телефон</label><input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required></div>
+        <div class="form-group"><label for="message">Пару слов о&nbsp;мероприятии</label><textarea id="message" placeholder="Формат, дата, количество участников, ваши пожелания"></textarea></div>
+        <div class="form-actions"><button type="submit" class="btn-primary">Отправить бриф хореографу</button></div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer" id="contacts">
+    <div class="footer-main">
+      <div class="footer-brand"><a href="dance-studio.html" class="nav-logo">Ви<span>Дэнс</span></a><p class="footer-brand-text">Танцевальная студия в&nbsp;Севастополе. Обучение, коммерческие выступления и&nbsp;постановки.</p></div>
+      <div class="footer-col"><h4>Студия</h4><ul><li><a href="dance-studio.html#directions">Направления</a></li><li><a href="dance-studio.html#schedule">Расписание</a></li><li><a href="performances.html">Выступления</a></li><li><a href="dance-studio.html#teacher">Преподаватель</a></li><li><a href="dance-studio.html#reviews">Отзывы</a></li></ul></div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg><span>Сталинграда 22, отель «Атлантика», Севастополь</span></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" style="color: inherit; text-decoration: none;">7 978 74 96 535</a></div>
+      </div>
+      <div class="footer-col">
+        <h4>Соцсети</h4>
+        <div class="footer-socials" style="margin-bottom: 16px;">
+          <a href="#" class="footer-social" aria-label="ВКонтакте"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.391 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.12-5.339-3.202-2.17-3.042-2.763-5.339-2.763-5.814 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.847 2.49 2.27 4.675 2.862 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.644v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.253-1.406 2.15-3.574 2.15-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.644-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg></a>
+          <a href="https://t.me/Violetta_Dance" target="_blank" rel="noopener" class="footer-social" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2025 ВиДэнс. Все права защищены</span></div>
+    <div class="footer-logo-bg">
+      <svg width="2391" height="444" viewBox="0 0 2391 444" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1925.37 0C2009.97 0 2075.48 19.6016 2075.48 94.9131V151.655H1967.16V70.6689C1967.16 50.5515 1965.09 24.2441 1925.37 24.2441C1887.2 24.2443 1877.92 50.0358 1877.92 75.3115V367.272C1877.92 393.064 1887.2 418.856 1925.37 418.856C1964.58 418.856 1967.16 392.033 1967.16 371.915V290.93H2075.48V347.671C2075.48 422.982 2009.97 443.101 1925.37 443.101C1841.29 443.101 1769.08 426.077 1769.08 347.671C1769.08 289.382 1769.59 163.003 1769.59 95.4287C1769.59 17.0225 1841.29 4.94379e-05 1925.37 0ZM212.523 382.748L317.237 5.1582H362.114L209.944 437.426H126.379L0 5.1582H111.936L212.523 382.748ZM516.736 437.426H406.348V5.1582H516.736V437.426ZM854.05 5.1582C951.026 5.15822 997.452 45.393 998.483 120.188V321.88C998.483 398.739 952.573 437.426 854.565 437.426H677.119V5.1582H854.05ZM1366.35 437.426H1256.47L1225.01 322.396L1094.5 318.784L1065.1 437.426H1018.68L1161.05 5.1582H1242.03L1366.35 437.426ZM1700.61 354.377L1675.34 5.1582H1718.15V437.426H1627.88L1420 49.0039L1448.89 437.426H1403.49V5.1582H1512.33L1700.61 354.377ZM2390.01 38.1719L2234.23 29.4023V200.143L2347.72 195.501V229.029L2234.23 224.903V412.666L2390.01 403.896V437.426H2124.88V5.1582H2390.01V38.1719ZM790.087 413.182H843.733C882.421 413.181 888.61 381.716 889.126 359.02V83.5645C888.61 59.8363 882.42 28.887 843.218 28.8867H790.087V413.182ZM1100.69 293.509L1216.76 290.414L1156.92 71.1846L1100.69 293.509Z" fill="white"/>
+      </svg>
+    </div>
+  </footer>
+
+</body>
+</html>
