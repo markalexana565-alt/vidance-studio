@@ -5,6 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Постановка танцев — ВиДэнс</title>
   <meta name="description" content="Постановка танцев на корпоративы, мероприятия и съёмки в Севастополе. Шоу-постановки, хореография для клипов и частных событий.">
+  <meta name="keywords" content="постановка танцев, корпоратив, Севастополь, шоу, хореография, клип, мероприятие">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://vidance-sevastopol.vercel.app/performances.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Постановка танцев — ВиДэнс">
+  <meta property="og:description" content="Постановка танцев на корпоративы, мероприятия и съёмки в Севастополе. Шоу-постановки, хореография для клипов и частных событий.">
+  <meta property="og:url" content="https://vidance-sevastopol.vercel.app/performances.html">
+  <meta property="og:site_name" content="ВиДэнс">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:image" content="https://vidance-sevastopol.vercel.app/og-image.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Постановка танцев — ВиДэнс">
+  <meta name="twitter:description" content="Постановка танцев на корпоративы, мероприятия и съёмки в Севастополе.">
+  <meta name="twitter:image" content="https://vidance-sevastopol.vercel.app/og-image.jpg">
+
+  <!-- Google Analytics (GA4) — TODO: вставь свой Measurement ID (G-XXXXXXX) -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXX');
+  </script>
+  -->
+
+  <!-- Яндекс.Метрика — TODO: вставь свой ID счётчика -->
+  <!--
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)});
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    ym(XXXXXXX, "init", {clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/XXXXXXX" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+  -->
+
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,6 +153,9 @@
     .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-dim); }
     .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 12px var(--accent-glow); }
     .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group input.error, .form-group textarea.error { border-color: #ef4444; box-shadow: 0 0 12px rgba(239,68,68,0.2); }
+    .form-error { font-size: 0.78rem; color: #ef4444; margin-top: 6px; display: none; }
+    .form-error.visible { display: block; }
     .form-actions { margin-top: 24px; }
 
     .footer { position: relative; border-top: 1px solid var(--border); background: var(--bg-deep); overflow: hidden; }
@@ -140,6 +186,43 @@
 
     @media (max-width: 1100px) { .nav-links { display: none; } .nav-center { gap: 12px; } .nav-burger { display: flex; } .formats-grid { grid-template-columns: 1fr; } .steps-list { grid-template-columns: repeat(2, 1fr); } .reviews-b2b { grid-template-columns: 1fr; } }
     @media (max-width: 768px) { .section { padding: 72px 20px; } .nav { padding: 0 20px; } .hero { padding: 90px 20px 60px; } .steps-list { grid-template-columns: 1fr; } .footer-main { grid-template-columns: 1fr; gap: 28px; padding: 40px 20px; } .footer-bottom { flex-direction: column; gap: 14px; text-align: center; padding: 20px; } .nav-phone { display: none; } .nav-socials { display: none; } }
+
+    .cookie-overlay { position: fixed; inset: 0; background: rgba(5,5,9,0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 9998; opacity: 0; pointer-events: none; transition: opacity 0.4s; }
+    .cookie-overlay.active { opacity: 1; pointer-events: auto; }
+    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; padding: 0 20px 24px; display: flex; justify-content: center; opacity: 0; transform: translateY(30px); transition: opacity 0.5s 0.15s, transform 0.5s 0.15s; pointer-events: none; }
+    .cookie-banner.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .cookie-card { position: relative; max-width: 720px; width: 100%; padding: 28px 32px 24px; background: linear-gradient(180deg, rgba(16,12,28,0.95) 0%, rgba(10,10,18,0.96) 100%); border: 1px solid rgba(168,85,247,0.18); border-radius: var(--radius); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); box-shadow: 0 -4px 48px rgba(168,85,247,0.08), 0 0 0 1px rgba(168,85,247,0.06), inset 0 1px 0 rgba(255,255,255,0.04); display: flex; flex-direction: column; gap: 20px; overflow: hidden; }
+    .cookie-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent) 30%, var(--pink) 70%, transparent); opacity: 0.7; }
+    .cookie-header { display: flex; align-items: flex-start; gap: 14px; }
+    .cookie-icon { flex-shrink: 0; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(124,58,237,0.08)); border: 1px solid rgba(168,85,247,0.2); border-radius: var(--radius-xs); color: var(--accent-bright); box-shadow: 0 0 16px rgba(168,85,247,0.1); }
+    .cookie-icon svg { width: 20px; height: 20px; }
+    .cookie-text p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+    .cookie-text a { color: var(--accent-bright); text-decoration: none; border-bottom: 1px solid rgba(168,85,247,0.3); transition: border-color 0.2s; }
+    .cookie-text a:hover { border-color: var(--accent-bright); }
+    .cookie-categories { display: flex; flex-direction: column; gap: 10px; }
+    .cookie-cat { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.05); border-radius: var(--radius-sm); transition: border-color 0.3s, background 0.3s; }
+    .cookie-cat:hover { border-color: rgba(168,85,247,0.12); background: rgba(255,255,255,0.035); }
+    .cookie-cat-info { display: flex; flex-direction: column; gap: 3px; }
+    .cookie-cat-name { font-size: 0.85rem; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+    .cookie-cat-desc { font-size: 0.78rem; color: var(--text-dim); line-height: 1.5; }
+    .cookie-toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; cursor: pointer; }
+    .cookie-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .cookie-toggle-track { position: absolute; inset: 0; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; cursor: pointer; transition: all 0.3s; }
+    .cookie-toggle input:checked + .cookie-toggle-track { background: linear-gradient(135deg, var(--accent), var(--accent-deep)); border-color: rgba(168,85,247,0.3); box-shadow: 0 0 12px rgba(168,85,247,0.25); }
+    .cookie-toggle-track::after { content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; background: #fff; border-radius: 50%; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+    .cookie-toggle input:checked + .cookie-toggle-track::after { transform: translateX(20px); }
+    .cookie-toggle input:disabled + .cookie-toggle-track { opacity: 0.45; cursor: not-allowed; }
+    .cookie-toggle input:disabled + .cookie-toggle-track::after { background: rgba(255,255,255,0.7); }
+    .cookie-actions { display: flex; gap: 10px; justify-content: flex-end; padding-top: 4px; }
+    .cookie-btn { padding: 11px 24px; border-radius: var(--radius-pill); font-family: var(--font-body); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.25s; border: none; white-space: nowrap; letter-spacing: -0.01em; }
+    .cookie-btn--accept { background: var(--gradient-btn); color: #fff; box-shadow: 0 0 20px var(--accent-glow), inset 0 1px 0 rgba(255,255,255,0.15); }
+    .cookie-btn--accept:hover { transform: translateY(-1px); box-shadow: 0 0 32px var(--accent-glow-strong), inset 0 1px 0 rgba(255,255,255,0.15); }
+    .cookie-btn--accept:active { transform: translateY(0) scale(0.98); }
+    .cookie-btn--save { background: transparent; color: var(--text); border: 1px solid rgba(168,85,247,0.25); }
+    .cookie-btn--save:hover { border-color: var(--accent-bright); background: rgba(168,85,247,0.08); box-shadow: 0 0 16px rgba(168,85,247,0.08); }
+    .cookie-btn--decline { background: transparent; color: var(--text-dim); border: 1px solid var(--border); }
+    .cookie-btn--decline:hover { border-color: var(--text-muted); color: var(--text-muted); }
+    @media (max-width: 600px) { .cookie-card { padding: 22px 18px 20px; } .cookie-actions { flex-wrap: wrap; justify-content: center; } .cookie-btn { width: 100%; text-align: center; } }
   </style>
 </head>
 <body>
@@ -186,7 +269,7 @@
   </div>
 
   <section class="hero">
-    <div class="hero-bg"><img src="Image/3718.jpg" alt="Шоу-постановка ВиДэнс"></div>
+    <div class="hero-bg"><img src="Image/3718.webp" alt="Шоу-постановка ВиДэнс"></div>
     <div class="hero-content">
       <div class="hero-eyebrow">Шоу-постановки в&nbsp;Севастополе и&nbsp;Крыму</div>
       <h1>Постановка танцев <span class="accent">на&nbsp;корпоративы, мероприятия и&nbsp;съёмки</span></h1>
@@ -230,10 +313,21 @@
     <div class="cta-content">
       <h2>Готовы создать <span class="accent">уникальное шоу</span>?</h2>
       <p>Оставьте заявку, и&nbsp;мы свяжемся с&nbsp;вами для&nbsp;обсуждения идеи и&nbsp;индивидуального расчета проекта.</p>
-      <form onsubmit="event.preventDefault(); this.querySelector('.btn-primary').textContent='Отправлено!'; this.querySelector('.btn-primary').style.opacity='0.6'; this.querySelector('.btn-primary').disabled=true;">
-        <div class="form-group"><label for="name">Ваше имя / Компания</label><input type="text" id="name" placeholder="Имя или название компании" required></div>
-        <div class="form-group"><label for="phone">Телефон</label><input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required></div>
-        <div class="form-group"><label for="message">Пару слов о&nbsp;мероприятии</label><textarea id="message" placeholder="Формат, дата, количество участников, ваши пожелания"></textarea></div>
+      <form id="cta-form-el" novalidate>
+        <div class="form-group">
+          <label for="name">Ваше имя / Компания</label>
+          <input type="text" id="name" placeholder="Имя или название компании">
+          <div class="form-error" id="name-error">Минимум 2 символа</div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" placeholder="+7 (___) ___-__-__">
+          <div class="form-error" id="phone-error">Введите корректный номер телефона</div>
+        </div>
+        <div class="form-group">
+          <label for="message">Пару слов о&nbsp;мероприятии</label>
+          <textarea id="message" placeholder="Формат, дата, количество участников, ваши пожелания"></textarea>
+        </div>
         <div class="form-actions"><button type="submit" class="btn-primary">Отправить бриф хореографу</button></div>
       </form>
     </div>
@@ -263,6 +357,107 @@
       </svg>
     </div>
   </footer>
+
+  <div class="cookie-overlay" id="cookie-overlay"></div>
+  <div class="cookie-banner" id="cookie-banner">
+    <div class="cookie-card">
+      <div class="cookie-header">
+        <div class="cookie-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/></svg>
+        </div>
+        <div class="cookie-text">
+          <p>Мы используем файлы cookie для улучшения работы сайта и аналитики. Выберите, какие cookie разрешить. <a href="privacy.html">Политика конфиденциальности</a></p>
+        </div>
+      </div>
+      <div class="cookie-categories">
+        <div class="cookie-cat">
+          <div class="cookie-cat-info">
+            <span class="cookie-cat-name">Обязательные</span>
+            <span class="cookie-cat-desc">Необходимы для работы сайта, отключить нельзя</span>
+          </div>
+          <label class="cookie-toggle">
+            <input type="checkbox" checked disabled>
+            <span class="cookie-toggle-track"></span>
+          </label>
+        </div>
+        <div class="cookie-cat">
+          <div class="cookie-cat-info">
+            <span class="cookie-cat-name">Аналитические</span>
+            <span class="cookie-cat-desc">Яндекс.Метрика, Google Analytics — помогают понять, как вы пользуетесь сайтом</span>
+          </div>
+          <label class="cookie-toggle">
+            <input type="checkbox" id="cookie-analytics" checked>
+            <span class="cookie-toggle-track"></span>
+          </label>
+        </div>
+      </div>
+      <div class="cookie-actions">
+        <button class="cookie-btn cookie-btn--decline" id="cookie-save">Сохранить настройки</button>
+        <button class="cookie-btn cookie-btn--accept" id="cookie-accept">Принять все</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      function loadAnalytics() {
+        // TODO: вставь сюда код Яндекс.Метрики и Google Analytics
+      }
+
+      var consent = localStorage.getItem('cookie-consent-analytics');
+      if (consent) {
+        try { var c = JSON.parse(consent); if (c.analytics) loadAnalytics(); } catch(e) {}
+        return;
+      }
+
+      var overlay = document.getElementById('cookie-overlay');
+      var banner = document.getElementById('cookie-banner');
+      if (!overlay || !banner) return;
+      function hide() { overlay.classList.remove('active'); banner.classList.remove('active'); }
+      function save(analytics) {
+        localStorage.setItem('cookie-consent-analytics', JSON.stringify({ necessary: true, analytics: analytics }));
+        hide();
+        if (analytics) loadAnalytics();
+      }
+      overlay.classList.add('active');
+      banner.classList.add('active');
+      document.getElementById('cookie-accept').addEventListener('click', function() { save(true); });
+      document.getElementById('cookie-save').addEventListener('click', function() { save(document.getElementById('cookie-analytics').checked); });
+    })();
+
+    (function() {
+      var form = document.getElementById('cta-form-el');
+      if (!form) return;
+      var nameInput = document.getElementById('name');
+      var phoneInput = document.getElementById('phone');
+      var nameError = document.getElementById('name-error');
+      var phoneError = document.getElementById('phone-error');
+
+      function validateName() {
+        var v = nameInput.value.trim();
+        if (v.length < 2) { nameInput.classList.add('error'); nameError.classList.add('visible'); return false; }
+        nameInput.classList.remove('error'); nameError.classList.remove('visible'); return true;
+      }
+      function validatePhone() {
+        var v = phoneInput.value.replace(/[\s\-\(\)]/g, '');
+        if (!/^\+?\d{7,15}$/.test(v)) { phoneInput.classList.add('error'); phoneError.classList.add('visible'); return false; }
+        phoneInput.classList.remove('error'); phoneError.classList.remove('visible'); return true;
+      }
+
+      nameInput.addEventListener('input', validateName);
+      phoneInput.addEventListener('input', validatePhone);
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var ok = validateName() & validatePhone();
+        if (!ok) return;
+        var btn = form.querySelector('.btn-primary');
+        btn.textContent = 'Отправлено!';
+        btn.style.opacity = '0.6';
+        btn.disabled = true;
+      });
+    })();
+  </script>
 
 </body>
 </html>

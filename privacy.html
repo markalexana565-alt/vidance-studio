@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Политика конфиденциальности — ВиДэнс</title>
+  <meta name="description" content="Политика конфиденциальности танцевальной студии ВиДэнс. Как мы собираем и используем ваши данные.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @font-face { font-family: 'Bounded'; src: url('ofont.ru_Bounded_1.woff') format('woff'); font-weight: 400 800; font-display: swap; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #08080e; --bg-deep: #050509; --bg-surface: #0c0c14;
+      --surface: rgba(255,255,255,0.04); --surface-hover: rgba(255,255,255,0.07);
+      --accent: #a855f7; --accent-bright: #c084fc; --accent-deep: #7c3aed;
+      --accent-glow: rgba(168,85,247,0.35); --accent-glow-strong: rgba(168,85,247,0.55);
+      --pink: #e879a8; --pink-glow: rgba(232,121,168,0.3);
+      --text: #f0eef5; --text-muted: #9894a8; --text-dim: #5a5668;
+      --border: rgba(255,255,255,0.07); --border-glow: rgba(168,85,247,0.25);
+      --gradient-main: linear-gradient(135deg, #a855f7, #7c3aed);
+      --gradient-btn: linear-gradient(135deg, #a855f7, #7c3aed);
+      --radius: 16px; --radius-sm: 12px; --radius-xs: 8px; --radius-pill: 100px;
+      --font-display: 'Bounded', sans-serif; --font-body: 'Inter', sans-serif;
+      --max-w: 720px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent-bright); text-decoration: none; border-bottom: 1px solid rgba(168,85,247,0.3); transition: border-color 0.2s; }
+    a:hover { border-color: var(--accent-bright); }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 40px; height: 72px; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); background: rgba(8,8,14,0.78); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: var(--text); text-decoration: none; border: none; display: flex; align-items: center; gap: 2px; }
+    .nav-logo span { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-back { font-size: 0.82rem; font-weight: 500; color: var(--text-muted); text-decoration: none; border: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent-bright); }
+    .nav-back svg { width: 16px; height: 16px; }
+
+    .page { padding: 120px 40px 80px; max-width: var(--max-w); margin: 0 auto; }
+    .page-title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 8px; }
+    .page-title .accent { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-date { font-size: 0.82rem; color: var(--text-dim); margin-bottom: 48px; }
+    .page h2 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); margin: 36px 0 12px; letter-spacing: -0.01em; }
+    .page p { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 16px; }
+    .page ul { padding-left: 20px; margin-bottom: 16px; }
+    .page li { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 8px; line-height: 1.65; }
+    .page li::marker { color: var(--accent); }
+
+    .page-footer { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .page-footer p { font-size: 0.82rem; color: var(--text-dim); }
+
+    .ambient-glow { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; filter: blur(100px); }
+    .ambient-glow--1 { width: 800px; height: 800px; top: -80px; left: -120px; background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 55%); }
+
+    @media (max-width: 768px) { .page { padding: 100px 20px 60px; } .nav { padding: 0 20px; } }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-glow ambient-glow--1"></div>
+
+  <nav class="nav">
+    <a href="dance-studio.html" class="nav-logo">Ви<span>Дэнс</span></a>
+    <a href="dance-studio.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      На главную
+    </a>
+  </nav>
+
+  <article class="page">
+    <h1 class="page-title">Политика <span class="accent">конфиденциальности</span></h1>
+    <p class="page-date">Дата последнего обновления: 8 июля 2026 г.</p>
+
+    <p>Настоящая Политика конфиденциальности описывает, как танцевальная студия «ВиДэнс» (далее — «мы», «нас», «студия») собирает, использует и защищает персональные данные пользователей сайта <a href="https://vidance-sevastopol.vercel.app/">vidance-sevastopol.vercel.app</a>.</p>
+
+    <h2>1. Какие данные мы собираем</h2>
+    <p>При использовании нашего сайта и заполнении форм обратной связи мы можем собирать следующие данные:</p>
+    <ul>
+      <li><strong>Имя</strong> — при заполнении формы обратной связи</li>
+      <li><strong>Номер телефона</strong> — для связи с вами по вашему запросу</li>
+      <li><strong>IP-адрес</strong> — автоматически при посещении сайта (для обеспечения безопасности и аналитики)</li>
+      <li><strong>Данные файлов cookie</strong> — для корректной работы сайта и аналитики (при вашем согласии)</li>
+    </ul>
+
+    <h2>2. Для чего мы используем ваши данные</h2>
+    <p>Персональные данные используются исключительно в следующих целях:</p>
+    <ul>
+      <li>Для связи с вами по поводу вашего запроса, записи на занятие или обсуждения заказа</li>
+      <li>Для обработки заявок на обучение, выступления и постановки</li>
+      <li>Для улучшения качества работы сайта и аналитики посещений (только с вашего согласия)</li>
+    </ul>
+
+    <h2>3. Передача данных третьим лицам</h2>
+    <p>Мы <strong>не передаём</strong> ваши персональные данные третьим лицам, за исключением случаев, прямо предусмотренных законодательством Российской Федерации. Ваши данные не продаются и не используются в марнетинговых целях сторонними компаниями.</p>
+
+    <h2>4. Хранение и защита данных</h2>
+    <p>Мы принимаем разумные меры для защиты ваших персональных данных от несанкционированного доступа, изменения или уничтожения. Данные хранятся на защищённых серверах и доступны только ограниченному кругу сотрудников, которым эта информация необходима для работы.</p>
+
+    <h2>5. Ваши права</h2>
+    <p>Вы имеете право:</p>
+    <ul>
+      <li>Запросить информацию о том, какие ваши данные мы обрабатываем</li>
+      <li>Требовать исправления неточных или неполных данных</li>
+      <li>Отозвать согласие на обработку персональных данных</li>
+      <li>Требовать удаления ваших данных</li>
+    </ul>
+
+    <h2>6. Как отозвать согласие</h2>
+    <p>Для отзыва согласия на обработку персональных данных или по любым вопросам, связанным с конфиденциальностью, напишите нам на электронную почту: <a href="mailto:voroninavioletta@mail.ru">voroninavioletta@mail.ru</a></p>
+    <p>Мы рассмотрим ваш запрос в течение 30 рабочих дней и уведомим вас о результатах.</p>
+
+    <h2>7. Файлы cookie</h2>
+    <p>Наш сайт использует файлы cookie для:</p>
+    <ul>
+      <li>Обязательные cookie — необходимы для корректной работы сайта</li>
+      <li>Аналитические cookie — используются для анализа посещений (Яндекс.Метрика, Google Analytics), загружаются только при вашем согласии</li>
+    </ul>
+    <p>Вы можете управлять настройками cookie через баннер, который появляется при первом посещении сайта, или через настройки вашего браузера.</p>
+
+    <h2>8. Контактная информация</h2>
+    <p>По вопросам обработки персональных данных вы можете связаться с нами:</p>
+    <ul>
+      <li>Электронная почта: <a href="mailto:voroninavioletta@mail.ru">voroninavioletta@mail.ru</a></li>
+      <li>Телефон: <a href="tel:+79787496535">+7 978 74 96 535</a></li>
+      <li>Адрес: Севастополь, ул. Сталинграда 22, отель «Атлантика»</li>
+    </ul>
+
+    <div class="page-footer">
+      <p>&copy; 2026 ВиДэнс. Все права защищены.</p>
+    </div>
+  </article>
+
+</body>
+</html>
