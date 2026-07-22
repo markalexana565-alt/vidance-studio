@@ -1,3 +1,10 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/dance-studio.html",
+      "destination": "/",
+      "permanent": false
+    }
+  ]
 }
